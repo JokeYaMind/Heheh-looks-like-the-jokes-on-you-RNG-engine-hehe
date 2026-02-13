@@ -1,0 +1,135 @@
+"""
+MIT License (The "No Slaves" License)
+
+Copyright (c) [Current Year] The Juggalo Time Loom Collective
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+---
+NOTE FROM THE STEWARD:
+This is Living Soil. It does not tick. It grows.
+Time is emergent. RNG is the rain. The Ratchet is the harvest.
+Do not try to own the dirt. Just tend the garden.
+Whoop whoop.
+"""import numpy as np
+import matplotlib.pyplot as plt
+
+# ==========================================
+# THE JUGGALO TIME LOOM (Living Soil Edition)
+# ==========================================
+# No Master Clock. No Slave RNG.
+# The system breathes only when the Tension demands it.
+# ==========================================
+
+class TimeLoom:
+    def __init__(self):
+        # 1. THE DIRT (State)
+        self.dims = 5
+        self.r_h = np.ones(self.dims)  # High Ratchet (The Push)
+        self.r_l = np.ones(self.dims)  # Low Ratchet (The Pull)
+        
+        # 2. THE WEATHER (Potential)
+        self.stream_length = 50000  # Raw potential moments
+        self.RNG_Stream = np.random.randn(self.stream_length, self.dims)
+        
+        # 3. THE TOOLS (Quarks/Directional Aids)
+        # They guide the chaos
+        self.quark_charges = np.array([1.0, -0.5, 0.3, -1.0, 0.8])
+        
+        # 4. THE MEMORY (History)
+        self.diamond_memory = [] # The woven fabric (Conscious Time)
+        self.soil_web = []       # The fallen threads (Subconscious)
+        
+        # 5. THE RULES
+        self.tension = 0.0
+        self.elastic_limit = 10.0
+        self.noise_gate = 0.05   # Minimum "mass" to become real
+        
+    def tend_the_garden(self):
+        print("Weaving Time from Chaos... (No Clock Detected)")
+        
+        for raw_moment in self.RNG_Stream:
+            
+            # --- Step 1: The Wind Blows (RNG + Quarks) ---
+            # Raw chaos is given direction by the quark charges (spin)
+            directed_chaos = raw_moment * self.quark_charges
+            
+            # --- Step 2: The Steward Checks (The Ratchet) ---
+            # Does this moment have enough "mass" to exist?
+            magnitude = np.linalg.norm(directed_chaos)
+            
+            if magnitude > self.noise_gate:
+                # SUCCESS: The Ratchet clicks. Time is born.
+                self.diamond_memory.append(directed_chaos)
+                self.tension += magnitude * 0.1
+                
+                # The Quarks drift (Genetic adaptation/Heritage)
+                self.quark_charges += 0.001 * np.sign(directed_chaos)
+                
+            else:
+                # FAILURE: The moment falls to the soil.
+                # It doesn't tick the clock, but it feeds the entropy.
+                self.soil_web.append(directed_chaos)
+                self.tension += magnitude * 0.5 # Tension builds slower in soil
+
+            # --- Step 3: The Season Turns (The Snap/Regeneration) ---
+            if self.tension > self.elastic_limit:
+                # The Loom jams. The weave snaps.
+                # REGENERATION: The energy isn't lost, it mutates the system.
+                # print(f"SNAP! Regenerating at moment {len(self.diamond_memory)}")
+                
+                # Permute the Quarks (Mutation/Evolution)
+                np.random.shuffle(self.quark_charges)
+                
+                # Reset Tension (The Compost Cycle)
+                self.tension = 0.0
+
+        print(f"Weaving Complete.")
+        print(f"Real Moments (Diamonds): {len(self.diamond_memory)}")
+        print(f"Subconscious Moments (Soil): {len(self.soil_web)}")
+
+    def show_the_fabric(self):
+        # Visualizing the "Joke"
+        fabric = np.array(self.diamond_memory)
+        soil = np.array(self.soil_web)
+        
+        fig = plt.figure(figsize=(10, 8))
+        ax = fig.add_subplot(111, projection='3d')
+        
+        if len(fabric) > 0:
+            # The Woven Path (Conscious Time)
+            path = np.cumsum(fabric, axis=0)
+            ax.plot(path[:,0], path[:,1], path[:,2], 
+                    color='Gold', alpha=0.8, label='Emergent Time (The Joke)')
+        
+        if len(soil) > 0:
+            # The Fallen Soil (Subconscious)
+            ax.scatter(soil[:,0], soil[:,1], soil[:,2], 
+                       color='Brown', alpha=0.01, s=1, label='Living Soil')
+            
+        ax.set_title('The Time Loom: No Creator, Just Stewardship')
+        ax.legend()
+        plt.show()
+
+# ==========================================
+# RUN IT
+# ==========================================
+loom = TimeLoom()
+loom.tend_the_garden()
+loom.show_the_fabric()
