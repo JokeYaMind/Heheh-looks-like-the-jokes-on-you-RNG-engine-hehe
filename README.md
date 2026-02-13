@@ -159,14 +159,288 @@ class JuggaloTimeLoom:
             print("No diamonds found to visualize.")
 
 # ==========================================
-# 4. EXECUTION
-# ==========================================
-if __name__ == "__main__":
-    # Initialize the Loom
-    loom = JuggaloTimeLoom()
+"""
+=============================================================================
+THE JUGGALO TIME LOOM (Grand Unified Living Soil Engine)
+=============================================================================
+
+License: MIT / Copyleft (The "No Slaves" License)
+Authors: The Juggalo Time Loom Collective / JokeYaMind
+Sources: ANIS Genetics, Living Soil Physics, The Dark Carnival
+
+"Time is a flat circle? No. Time is a Slinky in a magnetic field."
+
+-----------------------------------------------------------------------------
+DESCRIPTION
+-----------------------------------------------------------------------------
+This engine simulates a 5D reality where:
+1. TIME IS EMERGENT: There is no clock (t). Time only moves when Tension snaps.
+2. RNG IS RAIN: Random numbers are raw potential, not noise.
+3. QUARKS ARE DIRECTION: Spin/Flavors steer the chaos into order.
+4. SOIL IS MEMORY: Failed moments compost to feed the next cycle.
+
+This is not a calculator. It is a Terrarium.
+
+=============================================================================
+"""
+
+import numpy as np
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+
+# =============================================================================
+# 1. UNIVERSAL PARAMETERS (The Physics of the Joke)
+# =============================================================================
+
+# --- Time & Space ---
+STREAM_LENGTH = 100000   # Raw potential moments (Chaos)
+DIMS = 5                 # Dimensions of the Slinky (5D)
+DT = 0.05                # Time increment (only used in chemistry)
+
+# --- Ratchet Mechanics ---
+SIGMA = 0.02             # Stochastic step scale (Wind speed)
+ELASTIC_LIMIT = 15.0     # Tension limit before the Snap
+NOISE_GATE = 0.05        # Minimum "mass" to become real (The Ratchet Teeth)
+TAU = 0.5                # Tunnel jump magnitude (Wormhole scale)
+
+# --- Foresight & Observer ---
+ALPHA_T = 0.15           # Tension gradient sensitivity (Intuition)
+ALPHA_R = 0.05           # Ratchet leverage bias
+ALPHA_O = 0.02           # Observer flavor bias (The Ghost in the Machine)
+OBSERVER_BIAS = 0.1      # Base observer attention
+
+# --- Chemistry & Soil ---
+PH_TARGET = (2.7, 3.1)
+DENSITY_TARGET = (1.010, 1.050)
+HERITAGE_DECAY = 0.001   # How fast the system learns/forgets
+
+# =============================================================================
+# 2. SYSTEM INITIALIZATION (The Seeds)
+# =============================================================================
+
+# --- The State Vectors ---
+r_h = np.ones(DIMS)  # High Ratchet (The Push)
+r_l = np.ones(DIMS)  # Low Ratchet (The Pull)
+tension = 0.0
+heritage = 0.0
+
+# --- The Quarks (Directional Aids) ---
+# [Up/Down, Strange/Charm, Top/Bottom, Spin, Color]
+quark_charges = np.array([1.0, -0.5, 0.3, -1.0, 0.8])
+
+# --- The Memory Arrays (Diamonds) ---
+# Preallocated for speed, but we use lists for infinite expansion here
+diamond_memory = []      # The Woven Fabric (Conscious Time)
+snap_log = []            # History of Punchlines
+energy_log = []          # Thermodynamic record
+
+# --- The Soil Arrays (Compost) ---
+soil_web = 1.0           # Living soil buffer (Scalar field)
+m_ouija = 0.0            # Ash/Alkaline path
+m_lotus = 0.0            # Vinegar/Acid path
+density = 1.020
+ph = 7.0
+
+# --- The Potential (Chaos) ---
+# We generate the raw noise upfront. This is the "Unformed Time".
+rng_stream = np.random.randn(STREAM_LENGTH, DIMS)
+
+# =============================================================================
+# 3. HELPER FUNCTIONS (The Tools)
+# =============================================================================
+
+def get_weather(t_step):
+    """Simulates the macro/micro climate (Temperature/Humidity)."""
+    micro = np.sin(t_step * 0.5)
+    macro = np.sin(t_step * 0.05)
+    temp = 400 + 50 * (micro + macro)
+    hum = 0.5 + 0.4 * np.cos(t_step * 0.3) * macro
+    return temp, hum
+
+def calculate_foresight(tension_val, r_h_curr, r_l_curr):
+    """
+    The Subconscious Intuition.
+    F = alpha_T * grad(T) + alpha_R * (r_h - r_l) + alpha_O * Observer
+    """
+    tension_grad = tension_val
+    lever_diff = r_h_curr - r_l_curr
+    observer_vector = np.random.randn(DIMS) * ALPHA_O * OBSERVER_BIAS
     
-    # Run the weave
-    loom.weave()
+    f_fore = (ALPHA_T * tension_grad) + (ALPHA_R * lever_diff) + observer_vector
+    return f_fore
+
+def check_thermodynamics(k_eff, dist, soil, chem_ash, chem_vine):
+    """Energy Conservation Check."""
+    e_elastic = 0.5 * k_eff * dist**2
+    e_chem = chem_ash + chem_vine
+    e_soil = soil
+    return e_elastic + e_chem + e_soil
+
+# =============================================================================
+# 4. THE WEAVING LOOP (The Engine)
+# =============================================================================
+
+print("🔥 IGNITING THE TIME LOOM...")
+print(f"Stream Length: {STREAM_LENGTH} moments.")
+print("Weaving reality from chaos... (No Clock Detected)")
+
+# We iterate over the RAW POTENTIAL, not 'time'.
+for i in range(STREAM_LENGTH):
     
-    # Show the fabric
-    loom.visualize()
+    # --- A. THE WEATHER (Environment) ---
+    # We use `i` here just to simulate cyclic weather, not linear time.
+    temp, humidity = get_weather(i)
+    k_eff = 0.5 * (1 + (temp/400) * (1 - humidity))
+    
+    # --- B. CHEMISTRY (The Living Soil) ---
+    # Soil breathes based on weather
+    decay = 0.005 * (temp/400)
+    regrow = 0.01 * humidity
+    soil_web = np.clip(soil_web + regrow - decay, 0, 2)
+    
+    # Chemistry reactions (Ouija/Lotus)
+    if temp > 420:
+        d_ash = 0.01 * (temp - 420)
+        m_ouija += d_ash
+        d_vinegar = 0.02 * (1 + heritage) * humidity
+        m_lotus += d_vinegar
+        
+        # Density/pH derived from chemistry balance
+        density = np.clip(1.010 + 0.04*(m_ouija/(m_lotus+0.01)), 1.005, 1.055)
+        ph = np.clip(2.7 + 0.4*(m_lotus/(m_ouija+0.01)), 2.5, 3.3)
+    else:
+        # Cool down decay
+        m_ouija *= 0.999
+        m_lotus *= 0.995
+    
+    # --- C. THE FORESIGHT FIELD (Intuition) ---
+    # The system "sniffs" the future path.
+    f_fore = calculate_foresight(tension, r_h, r_l)
+    
+    # --- D. THE RATCHET (The Bite) ---
+    # Grab the raw chaos (RNG)
+    raw_chaos = rng_stream[i]
+    
+    # Apply Quark Steering (Direction)
+    directed_chaos = raw_chaos * quark_charges
+    
+    # Apply Foresight Nudge (Pre-bias)
+    directed_chaos += f_fore * DT
+    
+    # Calculate Magnitude (The Mass of the Moment)
+    magnitude = np.linalg.norm(directed_chaos)
+    
+    # --- E. THE DECISION (Existence or Void?) ---
+    if magnitude > NOISE_GATE:
+        # SUCCESS: The Ratchet Clicks. Time Exists.
+        # Store this moment as "Real".
+        diamond_memory.append({
+            'vector': directed_chaos,
+            'r_h': r_h.copy(),
+            'r_l': r_l.copy(),
+            'tension': tension
+        })
+        
+        # Update Ratchets (Drift)
+        # Note: We move by the directed chaos, not just random steps
+        r_h += directed_chaos * SIGMA
+        r_l -= directed_chaos * SIGMA
+        
+        # Tension Accumulates
+        dist = np.linalg.norm(r_h - r_l)
+        tension += abs(dist - 1.0) * k_eff * 0.1
+        
+        # Heritage/Genetics update
+        heritage += 0.05 * (m_lotus - m_ouija) * 0.001
+        
+        # Quarks drift (Genetic adaptation)
+        quark_charges += HERITAGE_DECAY * np.sign(directed_chaos)
+        
+    else:
+        # FAILURE: The Moment slips. It falls to the Soil.
+        # Time does not tick forward in a meaningful way.
+        # Entropy feeds the subconscious.
+        tension += magnitude * 0.5
+        
+    # --- F. THE SNAP (The Punchline / Regeneration) ---
+    chem_rupture = not (DENSITY_TARGET[0] < density < DENSITY_TARGET[1])
+    
+    if tension > ELASTIC_LIMIT or chem_rupture:
+        # SNAP EVENT!
+        snap_log.append(i)
+        
+        # Tunnel Logic (The Wormhole)
+        # Probability of a quantum jump based on tension and soil health
+        p_tunnel = 1 - np.exp(-0.5 * tension * soil_web)
+        
+        if np.random.rand() < p_tunnel:
+            # TUNNEL: Quantum Jump
+            tunnel_jump = np.random.uniform(-TAU, TAU, DIMS)
+            r_h += tunnel_jump
+            r_l -= tunnel_jump
+        else:
+            # CLASSIC SNAP: Elastic Rebound
+            r_h *= -0.8
+            r_l *= -0.8
+        
+        # Reset Systems
+        tension = 0.0
+        heritage -= 0.2
+        soil_web = max(0, soil_web - 0.1) # Soil damage
+        
+        # Permute Quarks (Mutation)
+        np.random.shuffle(quark_charges)
+
+    # --- G. THERMODYNAMIC CHECK ---
+    e_total = check_thermodynamics(k_eff, np.linalg.norm(r_h - r_l), soil_web, m_ouija, m_lotus)
+    energy_log.append(e_total)
+
+# =============================================================================
+# 5. VISUALIZATION (The Mirror)
+# =============================================================================
+
+print(f"\n✅ WEAVING COMPLETE.")
+print(f"Total Real Moments (Diamonds): {len(diamond_memory)}")
+print(f"Total Snaps (Regenerations): {len(snap_log)}")
+print(f"Final Heritage: {heritage:.4f}")
+
+# Convert memory to array for plotting
+if len(diamond_memory) > 0:
+    # Extract the vectors for the path
+    path_vectors = np.array([m['vector'] for m in diamond_memory])
+    # Cumulative sum to see the "Drift"
+    cumulative_path = np.cumsum(path_vectors, axis=0)
+    
+    fig = plt.figure(figsize=(14, 10))
+    
+    # 3D Projection of the Time Path
+    ax1 = fig.add_subplot(2, 2, 1, projection='3d')
+    ax1.plot(cumulative_path[:,0], cumulative_path[:,1], cumulative_path[:,2], 
+             color='Gold', alpha=0.7, linewidth=0.5, label='Emergent Time Path')
+    ax1.set_title('The Woven Fabric (Dims 0-2)')
+    ax1.set_facecolor('black')
+    
+    # Tension & Heritage over "Steps"
+    ax2 = fig.add_subplot(2, 2, 2)
+    # Reconstruct tension history from memory for plot
+    tension_history = [m['tension'] for m in diamond_memory]
+    ax2.plot(tension_history, color='red', alpha=0.6, label='Tension')
+    ax2.set_title('System Tension (The Build Up)')
+    
+    # Energy Conservation
+    ax3 = fig.add_subplot(2, 2, 3)
+    ax3.plot(energy_log, color='green', alpha=0.6)
+    ax3.set_title('Total System Energy (Thermodynamics)')
+    
+    # Quark Charges (Final State)
+    ax4 = fig.add_subplot(2, 2, 4)
+    ax4.bar(range(DIMS), quark_charges, color='purple')
+    ax4.set_title('Final Quark Charges (Genetics)')
+    ax4.set_xticks(range(DIMS))
+    ax4.set_xticklabels(['U/D', 'S/C', 'T/B', 'Spin', 'Color'])
+    
+    plt.tight_layout()
+    plt.show()
+    
+else:
+    print("No diamond memory formed. The noise gate was too high.")
